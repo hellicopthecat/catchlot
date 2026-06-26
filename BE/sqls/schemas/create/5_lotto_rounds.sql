@@ -3,7 +3,7 @@
 */
 
 CREATE TABLE IF NOT EXISTS lotto_round (
-	id INTEGER PRIMARY KEY
+	id INTEGER PRIMARY KEY,
 	created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
   
@@ -11,5 +11,5 @@ CREATE TABLE IF NOT EXISTS lotto_round (
 	draw_date TEXT NOT NULL DEFAULT '', -- 추첨일
 	bonus_number INTEGER NOT NULL DEFAULT 0, -- 보너스 번호
 
-  FOREIGN KEY(round_no) REFERENCES (lotto_round_number.id)
+  FOREIGN KEY(round_no) REFERENCES (lotto_rounds_numbers.id)
 );

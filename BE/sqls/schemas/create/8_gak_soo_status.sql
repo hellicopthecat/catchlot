@@ -1,16 +1,20 @@
 /*
 * 각 수의 상태
 */
-CREATE TABLE lotto_number_status (
-	 id text --uuid
-	 number int -- 숫자
-	 first_count -- 1등 등장
-	 second_count -- 2등 등장
-   third_count -- 3등 등장
-	 fourth_count -- 4등 등장
-   fifth_count -- 5등 등장
-	 first_probability -- 1등 등장 확률
-   second_probability -- 2등 등장 확률
-	 created_at -- 생성일
-	 updated_at -- 업데이트일
-”);
+CREATE TABLE IF NOT EXISTS gak_soo_status (
+	id TEXT PRIMARY KEY, --uuid
+	created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+	soo_id INTEGER, -- 숫자
+
+	first_count INTEGER, -- 1등 등장
+	second_count INTEGER, -- 2등 등장
+	third_count INTEGER, -- 3등 등장
+	fourth_count INTEGER, -- 4등 등장
+	fifth_count INTEGER, -- 5등 등장
+	first_probability REAL, -- 1등 등장 확률
+	second_probability REAL, -- 2등 등장 확률
+
+	FOREIGN KEY (soo_id) REFERENCES (gak_soo.id)
+);

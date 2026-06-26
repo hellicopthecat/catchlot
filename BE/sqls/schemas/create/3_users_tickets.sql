@@ -1,3 +1,7 @@
+/*
+* 유저가 구매한 티켓
+*/
+
 CREATE TABLE IF NOT EXISTS users_tickets  (
   id INTEGER PRIMARY KEY NOT NULL,
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,

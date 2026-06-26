@@ -1,3 +1,7 @@
+/* 
+* 유저
+*/
+
 CREATE TABLE IF NOT EXISTS users (
 	id TEXT PRIMARY KEY, -- uuid
 	created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,

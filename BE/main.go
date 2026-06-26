@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"log"
+	"os"
 
 	"github.com/gofiber/fiber/v3"
 	_ "github.com/mattn/go-sqlite3"
@@ -15,6 +16,17 @@ func main() {
 		log.Fatalf("❌ Database is Not Opened :: %d", err)
 	}
 	defer db.Close()
+
+	dirs, err := os.ReadDir("./sqls/schemas/create")
+
+	for dir, err := range dirs {
+		if err != nil {
+			log.Printf("err :: %d", err)
+		}
+
+		log.Printf("dir :: %d", dir)
+
+	}
 
 	app := fiber.New()
 
