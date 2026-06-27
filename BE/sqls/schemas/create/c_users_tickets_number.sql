@@ -2,7 +2,7 @@
 * 유저가 구매한 로또티켓의 선탠한 번호
 */
 
-CREATE TABLE IF NOT EXISTS users_ticket_number (
+CREATE TABLE IF NOT EXISTS users_tickets_numbers (
 	id INTEGER PRIMARY KEY NOT NULL,
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,

@@ -1,7 +1,7 @@
 /*
 * 공식 당첨번호 테이블
 */
-CREATE TABLE IF NOT EXISTS lotter_round_number (
+CREATE TABLE IF NOT EXISTS lotto_rounds_numbers (
 	id INTEGER PRIMARY KEY,
 	created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,

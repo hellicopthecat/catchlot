@@ -2,10 +2,11 @@
 * 추천번호세트
 */
 
-CREATE TABLE IF NOT EXISTS recommend_set (
-	id BININT primary key,
+CREATE TABLE IF NOT EXISTS recommend_sets (
+	id TEXT primary key,
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	
 	round_id INTEGER, -- lotto_round.id
 	
 	algorithm_version TEXT,
