@@ -19,5 +19,5 @@ CREATE TABLE IF NOT EXISTS users_rate_count (
 	rate_win_fourth REAL NOT NULL DEFAULT 0,
 	rate_win_fifth REAL NOT NULL DEFAULT 0,
 	
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  FOREIGN KEY (user_id) REFERENCES (users.id)
 );

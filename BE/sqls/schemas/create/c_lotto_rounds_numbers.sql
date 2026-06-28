@@ -9,5 +9,5 @@ CREATE TABLE IF NOT EXISTS lotto_rounds_numbers (
 	round_id TEXT, -- 로또회차별테이블 id
 	goal_number INTEGER, -- 당첨번호
 
-  FOREIGN KEY (round_id) REFERENCES (lotto_round.id)
+  FOREIGN KEY (round_id) REFERENCES (lotto_rounds.id)
 );
