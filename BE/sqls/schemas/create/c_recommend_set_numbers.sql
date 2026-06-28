@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS  recommend_set_number (
+CREATE TABLE IF NOT EXISTS recommend_set_numbers (
 	id INTEGER primary key,
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
