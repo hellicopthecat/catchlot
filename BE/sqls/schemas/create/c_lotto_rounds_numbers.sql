@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS lotto_rounds_numbers (
 	created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	
-	round_id TEXT, -- 로또회차별테이블 id
+	round_id TEXT UNIQUE, -- 로또회차별테이블 id
 	goal_number INTEGER, -- 당첨번호
 
   FOREIGN KEY (round_id) REFERENCES (lotto_rounds.id)

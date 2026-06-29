@@ -8,6 +8,9 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
+const createSQL = "./sqls/schemas/create/"
+const insertSQL = "./sqls/ddls/insert/"
+
 func InitDB() {
 	// DB
 	db, err := sql.Open("sqlite3", "./db.db")
@@ -16,12 +19,10 @@ func InitDB() {
 	}
 	defer db.Close()
 
-	const createSQL = "./sqls/schemas/create/"
-
 	dirs, err := os.ReadDir(createSQL)
 
 	if err != nil {
-		log.Fatalf("❌ SQL 디렉토리 읽기 실패 %s :: ", err)
+		badSQLDir(err)
 	}
 
 	for _, dir := range dirs {
@@ -32,5 +33,28 @@ func InitDB() {
 		log.Println(path)
 	}
 
-	log.Fatalf("✅ SQL 디렉토리 읽기 성공")
+	log.Println("✅ SQL 디렉토리 읽기 성공")
+
+	initializedGakSoos(db)
+}
+
+func initializedGakSoos(db *sql.DB) {
+	dirs, err := os.ReadDir(insertSQL)
+	if err != nil {
+		badSQLDir(err)
+	}
+	for _, dir := range dirs {
+		log.Printf("dirdir :: %s", dir)
+		if dir.Name() == "" {
+		}
+
+	}
+	// for i := 1; i <= 45; i++ {
+	// 	db.Exec()
+
+	// }
+}
+
+func badSQLDir(err error) {
+	log.Fatalf("❌ SQL 디렉토리 읽기 실패 %s :: ", err)
 }

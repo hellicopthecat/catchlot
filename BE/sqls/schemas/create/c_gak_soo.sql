@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS gak_soo (
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-	gak_num INTEGER -- (1~45)
+	gak_num INTEGER UNIQUE -- (1~45)
 	-- 1등 출현 확률 (매주 일요일 아침batch or server_calc)
   -- 2등 출현 확률 (매주 일요일 아침batch or server_calc )
   -- 3등 출현 확률 (매주 일요일 아침batch or server_calc)
