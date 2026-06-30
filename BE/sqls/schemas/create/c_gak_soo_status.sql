@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS gak_soo_status (
 	created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-	soo_id INTEGER, -- 숫자
+	soo_id TEXT, -- 숫자
 
 	first_count INTEGER NOT NULL DEFAULT 0, -- 1등 등장
 	second_count INTEGER NOT NULL DEFAULT 0, -- 2등 등장
@@ -16,5 +16,5 @@ CREATE TABLE IF NOT EXISTS gak_soo_status (
 	first_probability REAL NOT NULL DEFAULT 0, -- 1등 등장 확률
 	second_probability REAL NOT NULL DEFAULT 0, -- 2등 등장 확률
 
-	FOREIGN KEY (soo_id) REFERENCES (gak_soo.id)
+	FOREIGN KEY (soo_id) REFERENCES gak_soo(id)
 );

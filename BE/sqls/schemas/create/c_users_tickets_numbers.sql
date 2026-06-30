@@ -11,6 +11,6 @@ CREATE TABLE IF NOT EXISTS users_tickets_numbers (
   pick_number_id TEXT NOT NULL,
 	pick_number INTEGER NOT NULL,
 
-  FOREIGN KEY (ticket_id) REFERENCES (users_tickets.id),
-  FOREIGN KEY (pick_number_id) REFERENCES (gak_soo.id)
+  FOREIGN KEY (ticket_id) REFERENCES users_tickets(id),
+  FOREIGN KEY (pick_number_id) REFERENCES gak_soo(id)
 )

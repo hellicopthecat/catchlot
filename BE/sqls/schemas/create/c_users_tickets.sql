@@ -15,6 +15,6 @@ CREATE TABLE IF NOT EXISTS users_tickets  (
   bonus_match INTEGER DEFAULT false, -- BOOLEAN -- 보너스 번호 맞았는지
   checked INTEGER DEFAULT false, -- BOOLEAN -- 당첨확인체크
 
-  FOREIGN KEY (user_id) REFERENCES(users.id),
-  FOREIGN KEY (round_id) REFERENCES(lotto_rounds.id)
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (round_id) REFERENCES lotto_rounds(id)
 );

@@ -14,5 +14,5 @@ CREATE TABLE IF NOT EXISTS recommend_sets (
 	score REAL, -- 추천 신뢰도
 	generated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 생성일
 
-  FOREIGN KEY(round_id) REFERENCES (lotto_rounds.id)
+  FOREIGN KEY(round_id) REFERENCES lotto_rounds(id)
 );

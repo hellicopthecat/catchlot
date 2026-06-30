@@ -9,5 +9,5 @@ CREATE TABLE IF NOT EXISTS recommend_results (
 	bonus_match INTEGER,
 	rank INTEGER,
 
-  FOREIGN KEY(recommend_set_id) REFERENCES (recommend_sets.id)
+  FOREIGN KEY(recommend_set_id) REFERENCES recommend_sets(id)
 );
