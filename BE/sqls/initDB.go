@@ -7,13 +7,12 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
+	"github.com/hellicopthecat/catchlot/commons"
+	"github.com/hellicopthecat/catchlot/constants"
 	_ "github.com/mattn/go-sqlite3"
 )
 
-const createSQL = "./sqls/schemas/create/"
-const insertSQL = "./sqls/ddls/insert/"
-
-func InitDB() {
+func InitDB() *sql.DB {
 	// DB
 	db, err := sql.Open("sqlite3", "./db.db")
 	if err != nil {
@@ -21,17 +20,17 @@ func InitDB() {
 	}
 	defer db.Close()
 
-	dirs, err := os.ReadDir(createSQL)
+	dirs, err := os.ReadDir(constants.CreateSQL)
 
 	if err != nil {
-		badSQLFile(err)
+		commons.BadSQLFile(err)
 	}
 
 	for _, dir := range dirs {
 		if dir.IsDir() {
 			continue
 		}
-		path := createSQL + dir.Name()
+		path := constants.CreateSQL + dir.Name()
 		content, err := os.ReadFile(path)
 		if err != nil {
 			log.Fatalf("❌ Initialized Create Schemas is Failed")
@@ -51,6 +50,8 @@ func InitDB() {
 	log.Println("✅ SQL 디렉토리 읽기 성공")
 
 	initializedGakSoos(db)
+
+	return db
 }
 
 func initializedGakSoos(db *sql.DB) {
@@ -61,14 +62,14 @@ func initializedGakSoos(db *sql.DB) {
 		return
 	}
 
-	gakSooSQL, err := os.ReadFile(insertSQL + "i_gak_soo.sql")
+	gakSooSQL, err := os.ReadFile(constants.InsertSQL + "i_gak_soo.sql")
 	if err != nil {
-		badSQLFile(err)
+		commons.BadSQLFile(err)
 	}
 
-	gakSooStatusSQL, err := os.ReadFile(insertSQL + "i_gak_soo_status.sql")
+	gakSooStatusSQL, err := os.ReadFile(constants.InsertSQL + "i_gak_soo_status.sql")
 	if err != nil {
-		badSQLFile(err)
+		commons.BadSQLFile(err)
 	}
 
 	tx, _ := db.Begin()
@@ -84,8 +85,4 @@ func initializedGakSoos(db *sql.DB) {
 	if err := tx.Commit(); err != nil {
 		log.Fatalln("❌ Gak_Soo Insert Is UnComplete")
 	}
-}
-
-func badSQLFile(err error) {
-	log.Fatalf("❌ SQL 디렉토리 및 파일 읽기 실패 %s :: ", err)
 }

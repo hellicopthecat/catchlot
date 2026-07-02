@@ -9,16 +9,12 @@ import (
 
 func main() {
 	// init DB
-	sqls.InitDB()
+	db := sqls.InitDB()
 
 	// SERVER
 	app := fiber.New()
 
 	api := app.Group("/api")
-
-	api.Get("/", func(c fiber.Ctx) {
-
-	})
 
 	log.Fatalln(app.Listen(":3000"))
 
