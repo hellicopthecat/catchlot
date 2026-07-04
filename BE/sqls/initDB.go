@@ -18,7 +18,6 @@ func InitDB() *sql.DB {
 	if err != nil {
 		log.Fatalf("❌ Database is Not Opened :: %d", err)
 	}
-	defer db.Close()
 
 	dirs, err := os.ReadDir(constants.CreateSQL)
 
