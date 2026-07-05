@@ -1,26 +1,105 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ==========================
+   * Fern Theme
+   * ========================== */
+  --fern-hair-dark: #3e2b5b;
+  --fern-hair: #5c467d;
+  --fern-hair-light: #8a78b5;
+  --fern-eye: #8a6bc9;
+  --fern-robe: #1f1f24;
+  --fern-robe-trim: #e8e6e9;
+  --fern-gold: #c9a35d;
+  --fern-skin: #f3d6c6;
+
+  /* ==========================
+   * Stark Theme
+   * ========================== */
+  --stark-hair: #a63d3d;
+  --stark-hair-dark: #7a2b2b;
+  --stark-eye: #b85a4c;
+  --stark-jacket: #6a4b38;
+  --stark-leather: #4b3426;
+  --stark-armor: #b6b9c0;
+  --stark-skin: #e8c0a8;
+
+  /* ==========================
+   * UI Theme (Fern × Stark)
+   * ========================== */
+  --color-primary: #5c467d; /* Fern Purple */
+  --color-secondary: #a63d3d; /* Stark Red */
+  --color-accent: #c9a35d; /* Gold */
+  --color-bg: #1f1f24; /* Dark Background */
+  --color-surface: #2a2733; /* Card */
+  --color-border: #4b3426; /* Brown Border */
+  --color-text: #e8e6e9; /* Main Text */
+  --color-text-muted: #b6b9c0; /* Secondary Text */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* --color-background: var(--fern-hair-dark); */
+  /* --color-foreground: var(--foreground); */
+  /* --font-sans: var(--font-geist-sans); */
+  /* --font-mono: var(--font-geist-mono); */
+  --fern-hair-dark: var(--fern-hair-dark);
+  --fern-hair: var(--fern-hair);
+  --fern-hair-light: var(--fern-hair-light);
+  --fern-eye: var(--fern-eye);
+  --fern-robe: var(--fern-robe);
+  --fern-robe-trim: var(--fern-robe-trim);
+  --fern-gold: var(--fern-gold);
+  --fern-skin: var(--fern-skin);
+  --stark-hair: var(--stark-hair);
+  --stark-hair-dark: var(--stark-hair-dark);
+  --stark-eye: var(--stark-eye);
+  --stark-jacket: var(--stark-jacket);
+  --stark-leather: var(--stark-leather);
+  --stark-armor: var(--stark-armor);
+  --stark-skin: var(--stark-skin);
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-border: var(--color-border);
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  /* :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-  }
+  } */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--fern-robe-trim);
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+}
+h2 {
+  font-size: 22px;
+  font-weight: 600;
+}
+h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+p,
+span,
+label,
+legend {
+  font-size: 14px;
+  font-weight: 400;
+}
+small {
+  font-size: 12px;
+  font-weight: 400;
 }
