@@ -9,5 +9,7 @@ CREATE TABLE IF NOT EXISTS users (
 	
 	email TEXT NOT NULL UNIQUE,
 	social TEXT,
-	nickname TEXT
+	nickname TEXT,
+
+	refresh_token TEXT
 );
