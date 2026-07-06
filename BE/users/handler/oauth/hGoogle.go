@@ -48,7 +48,7 @@ func (o OauthHandler) LoginWithGoogleRequest(c fiber.Ctx) error {
 	q := url.Values{}
 
 	q.Set("client_id", clientId)
-	q.Set("redirect_uri", "http://localhost:3000/api/user/google/response") // redirect url
+	q.Set("redirect_uri", "http://localhost:4000/api/user/google/response") // redirect url
 	q.Set("response_type", "code")
 	q.Set("scope", "email openid profile")
 	q.Set("state", stateId)
@@ -91,7 +91,7 @@ func (o OauthHandler) LoginWithGoogleResponse(c fiber.Ctx) error {
 	q.Set("client_secret", os.Getenv("GOOGLE_SECRET_KEY"))
 	q.Set("code", code)
 	q.Set("grant_type", "authorization_code")
-	q.Set("redirect_uri", "http://localhost:3000/api/user/google/response")
+	q.Set("redirect_uri", "http://localhost:4000/api/user/google/response")
 
 	resp, err := http.PostForm("https://oauth2.googleapis.com/token", q)
 	if err != nil {
@@ -134,12 +134,13 @@ func (o OauthHandler) LoginWithGoogleResponse(c fiber.Ctx) error {
 
 	if exist == email {
 		// JWT 등록
-		commons.RegistCookies(c, email, name, "GOOGLE")
-		return c.Status(fiber.StatusOK).JSON(commons.Results{
-			Status: true,
-			Msg:    "로그인에 성공하였습니다.",
-			Data:   nil,
-		})
+		_, rt := commons.RegistCookies(c, email, name, "GOOGLE")
+		uUser := request.UpdateUserRequest{
+			Email:        email,
+			RefreshToken: rt,
+		}
+		o.userService.SUpdateUser(ctx, uUser)
+		return c.Redirect().To("http://localhost:3000/home")
 	}
 
 	id, err := uuid.NewV7()
@@ -165,12 +166,11 @@ func (o OauthHandler) LoginWithGoogleResponse(c fiber.Ctx) error {
 	}
 
 	// JWT 등록
-	commons.RegistCookies(c, email, name, "GOOGLE")
-
-	return c.Status(fiber.StatusOK).JSON(commons.Results{
-		Status: true,
-		Msg:    "로그인에 성공하였습니다.",
-		Data:   nil,
-	})
-
+	_, rt := commons.RegistCookies(c, email, name, "GOOGLE")
+	uUser := request.UpdateUserRequest{
+		Email:        email,
+		RefreshToken: rt,
+	}
+	o.userService.SUpdateUser(ctx, uUser)
+	return c.Redirect().To("http://localhost:3000/home")
 }

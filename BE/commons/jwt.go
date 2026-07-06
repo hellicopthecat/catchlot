@@ -31,9 +31,9 @@ func GenerateACCESSJWT(email string, social string, nickname string) (string, er
 		},
 	}
 
-	token := jwt.NewWithClaims(jwt.SigningMethodES256, claims)
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
-	at, err := token.SignedString(signKey)
+	at, err := token.SignedString([]byte(signKey))
 	return at, err
 }
 
@@ -47,7 +47,7 @@ func GenerateREFRESHJWT() (string, error) {
 		NotBefore: jwt.NewNumericDate(time.Now()),
 		Subject:   "catch-lot-refresh",
 	}
-	token := jwt.NewWithClaims(jwt.SigningMethodES256, claims)
-	rt, err := token.SignedString(signKey)
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	rt, err := token.SignedString([]byte(signKey))
 	return rt, err
 }

@@ -6,3 +6,9 @@ type CreateUserRequest struct {
 	Social   string
 	Nickname string
 }
+
+type UpdateUserRequest struct {
+	Nickname     *string
+	RefreshToken *string
+	Email        string
+}

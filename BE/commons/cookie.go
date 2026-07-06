@@ -5,18 +5,20 @@ import (
 	"github.com/hellicopthecat/catchlot/constants"
 )
 
-func RegistCookies(c fiber.Ctx, email string, name string, social string) {
+func RegistCookies(c fiber.Ctx, email string, name string, social string) (*string, *string) {
 	at, err := GenerateACCESSJWT(email, social, name)
 	if err != nil {
 		TokenError(c, err)
+		return nil, nil
 	}
 	rt, err := GenerateREFRESHJWT()
 	if err != nil {
 		TokenError(c, err)
+		return nil, nil
 	}
 	RegistCookie(c, constants.ACCESS, at)
 	RegistCookie(c, constants.REFRESH, rt)
-
+	return nil, &rt
 }
 
 func RegistCookie(c fiber.Ctx, name string, token string) {

@@ -30,4 +30,5 @@ func (m *UserModule) UserGroupApi(g fiber.Router) {
 	u := g.Group("/user")
 	u.Get("/google/login", m.oauthHandler.LoginWithGoogleRequest)
 	u.Get("/google/response", m.oauthHandler.LoginWithGoogleResponse)
+	u.Get("/logout", m.userHandler.HLogout)
 }

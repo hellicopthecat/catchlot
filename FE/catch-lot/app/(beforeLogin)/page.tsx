@@ -1,3 +1,4 @@
+"use client";
 import BorderAnch from "@/components/common/anchors/BorderAnch";
 import ColorAnch from "@/components/common/anchors/ColorAnchBtn";
 import BorderBtn from "@/components/common/buttons/BorderBtn";
@@ -5,6 +6,7 @@ import ColorButton from "@/components/common/buttons/ColorBtn";
 import Card from "@/components/common/Card";
 
 export default function Login() {
+  const loginURL = "http://localhost:4000/api/user/google/login";
   return (
     <div className="">
       <Card>
@@ -13,6 +15,7 @@ export default function Login() {
         <BorderBtn>Strak</BorderBtn>
         <ColorAnch>Fern</ColorAnch>
         <BorderAnch>Zahen</BorderAnch>
+        <a href={loginURL}>login</a>
       </Card>
     </div>
   );
