@@ -1,6 +1,7 @@
 package commons
 
 import (
+	"fmt"
 	"os"
 	"time"
 
@@ -50,4 +51,23 @@ func GenerateREFRESHJWT() (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	rt, err := token.SignedString([]byte(signKey))
 	return rt, err
+}
+
+func DecodedACCESSJWT(tokenStr string) (*JwtClaims, error) {
+	signKey := os.Getenv("SECRET_ACCESS_JWT_KEY")
+
+	parseToken, err := jwt.ParseWithClaims(tokenStr, &JwtClaims{}, func(t *jwt.Token) (any, error) {
+		if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, fmt.Errorf("Unexpected Signing Methods")
+		}
+		return []byte(signKey), nil
+	})
+	if err != nil {
+		return nil, err
+	}
+	claims, ok := parseToken.Claims.(*JwtClaims)
+	if !ok || !parseToken.Valid {
+		return nil, fmt.Errorf("Invalid Token")
+	}
+	return claims, nil
 }

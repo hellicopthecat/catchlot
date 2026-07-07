@@ -2,8 +2,11 @@ package main
 
 import (
 	"log"
+	"os"
 
+	jwtware "github.com/gofiber/contrib/v3/jwt"
 	"github.com/gofiber/fiber/v3"
+	"github.com/gofiber/fiber/v3/extractors"
 	"github.com/gofiber/fiber/v3/middleware/cors"
 	"github.com/hellicopthecat/catchlot/sqls"
 	"github.com/hellicopthecat/catchlot/users"
@@ -23,6 +26,13 @@ func main() {
 	app.Use(cors.New(cors.Config{
 		AllowOrigins: []string{"http://localhost:3000", "https://accounts.google.com"},
 		AllowHeaders: []string{"Origin", "Content-Type", "Accept"},
+	}))
+
+	app.Use(jwtware.New(jwtware.Config{
+		SigningKey: jwtware.SigningKey{Key: []byte(os.Getenv("SECRET_ACCESS_JWT_KEY"))},
+		Extractor: extractors.Chain(
+			extractors.FromHeader("Authorization"),
+		),
 	}))
 	api := app.Group("/api")
 
