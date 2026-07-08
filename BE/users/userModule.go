@@ -26,9 +26,9 @@ func InitModule(db *sql.DB) *UserModule {
 	}
 }
 
-func (m *UserModule) UserGroupApi(g fiber.Router) {
-	u := g.Group("/user")
+func (m *UserModule) UserGroupApi(r fiber.Router, auth fiber.Handler) {
+	u := r.Group("/user")
 	u.Get("/google/login", m.oauthHandler.LoginWithGoogleRequest)
 	u.Get("/google/response", m.oauthHandler.LoginWithGoogleResponse)
-	u.Get("/logout", m.userHandler.HLogout)
+	u.Get("/logout", auth, m.userHandler.HLogout)
 }
