@@ -6,8 +6,8 @@ type TicketRepo struct {
 	db *sql.DB
 }
 
-func InitTicketRepo(db *sql.DB) TicketRepo {
-	return TicketRepo{
+func InitTicketRepo(db *sql.DB) *TicketRepo {
+	return &TicketRepo{
 		db: db,
 	}
 }

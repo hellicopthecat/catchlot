@@ -3,4 +3,5 @@ INSERT INTO users_tickets (
   round_id,
   rank
 )
-VALUES (?,?,?);
+VALUES (?,?,?)
+RETURNING id;
