@@ -14,8 +14,8 @@ type TicketModule struct {
 	TicketHandler handler.TicketHandler
 }
 
-func InitTickeModule(db *sql.DB) *TicketModule {
-	ticketRepo := repo.InitTicketRepo(db)
+func InitTickeModule(db *sql.DB, gkCache *gk.GakSooCache) *TicketModule {
+	ticketRepo := repo.InitTicketRepo(db, gkCache)
 	ticketService := service.InitTicketService(ticketRepo)
 	ticketHander := handler.InitTicketHandler(ticketService)
 	return &TicketModule{
@@ -23,7 +23,7 @@ func InitTickeModule(db *sql.DB) *TicketModule {
 	}
 }
 
-func (m *TicketModule) TicketGroupApi(r fiber.Router, auth fiber.Handler, cache *gk.GakSooCache) {
+func (m *TicketModule) TicketGroupApi(r fiber.Router, auth fiber.Handler) {
 	t := r.Group("/ticket")
 	t.Post("/new", auth, m.TicketHandler.HCreateUserTicket)
 }

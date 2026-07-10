@@ -2,7 +2,6 @@ package handler
 
 import (
 	"context"
-	"log"
 
 	"github.com/gofiber/fiber/v3"
 	"github.com/hellicopthecat/catchlot/commons"
@@ -12,7 +11,6 @@ import (
 func (h UserHandler) HLogout(c fiber.Ctx) error {
 	ctx := context.Background()
 	at := c.Cookies(constants.ACCESS)
-	log.Printf("ACCESS :: %s", at)
 
 	claims, err := commons.DecodedACCESSJWT(at)
 	if err != nil {

@@ -1,13 +1,19 @@
 package repo
 
-import "database/sql"
+import (
+	"database/sql"
+
+	"github.com/hellicopthecat/catchlot/gakSoo/repo"
+)
 
 type TicketRepo struct {
-	db *sql.DB
+	db  *sql.DB
+	gak *repo.GakSooCache
 }
 
-func InitTicketRepo(db *sql.DB) *TicketRepo {
+func InitTicketRepo(db *sql.DB, gak *repo.GakSooCache) *TicketRepo {
 	return &TicketRepo{
-		db: db,
+		db:  db,
+		gak: gak,
 	}
 }

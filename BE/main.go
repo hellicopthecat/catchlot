@@ -40,7 +40,7 @@ func main() {
 	jm := middleware.JwtMiddleware()
 
 	users.InitModule(db).UserGroupApi(api, jm)
-	tickets.InitTickeModule(db).TicketGroupApi(api, jm, gaksoo)
+	tickets.InitTickeModule(db, gaksoo).TicketGroupApi(api, jm)
 
 	log.Fatalln(app.Listen(":4000"))
 }

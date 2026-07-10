@@ -17,3 +17,10 @@ func TokenError(c fiber.Ctx, err error) error {
 		Msg:    "로그인에 실패하였습니다.",
 	})
 }
+
+func UnauthorizedError(c fiber.Ctx) error {
+	return c.Status(fiber.StatusUnauthorized).JSON(Results{
+		Status: false,
+		Msg:    "잘못된 인증요청입니다.",
+	})
+}
