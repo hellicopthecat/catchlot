@@ -1,5 +1,6 @@
 "use client";
 
+import RegistTicketModal from "@/components/registTicket/RegistTicketModal";
 import {useRouter} from "next/navigation";
 
 export default function Page() {
@@ -23,6 +24,7 @@ export default function Page() {
   return (
     <div>
       <button onClick={logOut}>logout</button>
+      <RegistTicketModal />
     </div>
   );
 }

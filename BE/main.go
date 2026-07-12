@@ -30,6 +30,7 @@ func main() {
 
 	// SERVER
 	app := fiber.New()
+
 	app.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"http://localhost:3000", "https://accounts.google.com"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Accept"},

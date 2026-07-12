@@ -24,3 +24,11 @@ func UnauthorizedError(c fiber.Ctx) error {
 		Msg:    "잘못된 인증요청입니다.",
 	})
 }
+
+func CheckAtoi(c fiber.Ctx, err error) error {
+	log.Printf("❌ CheckAtoi Err :: %s", err)
+	return c.Status(fiber.StatusBadRequest).JSON(Results{
+		Status: false,
+		Msg:    "잘못된 요청입니다.",
+	})
+}
