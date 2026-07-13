@@ -2,8 +2,6 @@ package handler
 
 import (
 	"context"
-	"fmt"
-	"strconv"
 
 	"github.com/gofiber/fiber/v3"
 	"github.com/hellicopthecat/catchlot/commons"
@@ -21,35 +19,16 @@ func (h TicketHandler) HCreateUserTickets(c fiber.Ctx) error {
 		return commons.UnauthorizedError(c)
 	}
 
-	q := c.Queries()
-	rankVal := q["rank"]
-	roundIdVal := q["roundId"]
-	rank, err := strconv.Atoi(rankVal)
-	if err != nil {
-		return commons.CheckAtoi(c, err)
-	}
-	round, err := strconv.Atoi(roundIdVal)
-	if err != nil {
-		return commons.CheckAtoi(c, err)
+	var dto []request.CreateUserTicketDto
+
+	if err := c.Bind().Body(&dto); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(commons.Results{
+			Status: false,
+			Msg:    "올바른 요청이 아닙니다.",
+		})
 	}
 
-	var dto request.CreateUserTicketRequest
-
-	for i := 1; i <= 6; i++ {
-		key := fmt.Sprintf("num_%d", i)
-		num := q[key]
-		convNum, err := strconv.Atoi(num)
-		if err != nil {
-			return commons.CheckAtoi(c, err)
-		}
-		dto.Number = append(dto.Number, convNum)
-	}
-
-	dto.User_id = claims.Email
-	dto.Rank = rank
-	dto.Round_id = round
-
-	h.ticketService.SCreateUserTickets(ctx, dto)
+	h.ticketService.SCreateUserTickets(ctx, claims.Email, dto)
 
 	return c.Status(fiber.StatusOK).JSON(commons.Results{})
 }

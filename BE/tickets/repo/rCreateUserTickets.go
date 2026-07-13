@@ -30,25 +30,27 @@ func (r *TicketRepo) RCreateUserTickets(ctx context.Context, req request.CreateU
 		return err
 	}
 
-	var id int
-	err = tx.QueryRow(string(q), req.User_id, req.Round_id, req.Rank).Scan(&id)
-	if err != nil {
-		log.Printf("RCreateUserTicket 티켓을 생성하는데 실패했습니다. :: %s", err)
-		return err
-	}
-
-	for _, num := range req.Number {
-
-		gakSooId, ok := r.gak.GakSooMap[num]
-
-		if !ok {
-			return fmt.Errorf("유효하지 않은 번호 : %d", num)
+	for _, tickets := range req.Ticket_info {
+		var id int
+		err = tx.QueryRow(string(q), req.User_id, tickets.Round_id, tickets.Rank).Scan(&id)
+		if err != nil {
+			log.Printf("RCreateUserTicket 티켓을 생성하는데 실패했습니다. :: %s", err)
+			return err
 		}
 
-		_, err := tx.Exec(string(q2), id, gakSooId, num)
-		if err != nil {
-			log.Printf("RCreateUserTicket 티켓의 번호를 생성하는데 실패했습니다. :: %s", err)
-			return err
+		for _, num := range tickets.Numbers {
+
+			gakSooId, ok := r.gak.GakSooMap[num]
+
+			if !ok {
+				return fmt.Errorf("유효하지 않은 번호 : %d", num)
+			}
+
+			_, err := tx.Exec(string(q2), id, gakSooId, num)
+			if err != nil {
+				log.Printf("RCreateUserTicket 티켓의 번호를 생성하는데 실패했습니다. :: %s", err)
+				return err
+			}
 		}
 	}
 	return nil
