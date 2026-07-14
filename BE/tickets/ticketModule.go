@@ -25,5 +25,5 @@ func InitTickeModule(db *sql.DB, gkCache *gk.GakSooCache) *TicketModule {
 
 func (m *TicketModule) TicketGroupApi(r fiber.Router, auth fiber.Handler) {
 	t := r.Group("/ticket")
-	t.Post("/new", auth, m.TicketHandler.HCreateUserTicket)
+	t.Post("/new", auth, m.TicketHandler.HCreateUserTickets)
 }

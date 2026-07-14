@@ -1,5 +1,5 @@
 export interface ITicketField {
-  round_id: string;
-  rank: string;
-  numbers: string[];
+  round_id: number | null;
+  rank: number | null;
+  numbers: (number | null)[];
 }

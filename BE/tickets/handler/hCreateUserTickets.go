@@ -2,6 +2,7 @@ package handler
 
 import (
 	"context"
+	"log"
 
 	"github.com/gofiber/fiber/v3"
 	"github.com/hellicopthecat/catchlot/commons"
@@ -28,7 +29,12 @@ func (h TicketHandler) HCreateUserTickets(c fiber.Ctx) error {
 		})
 	}
 
+	log.Printf("tickets :: %+v", dto)
+
 	h.ticketService.SCreateUserTickets(ctx, claims.Email, dto)
 
-	return c.Status(fiber.StatusOK).JSON(commons.Results{})
+	return c.Status(fiber.StatusOK).JSON(commons.Results{
+		Status: true,
+		Msg:    "등록성공했습니다.",
+	})
 }
