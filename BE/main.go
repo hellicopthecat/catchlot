@@ -8,6 +8,7 @@ import (
 	"github.com/gofiber/fiber/v3/middleware/cors"
 	"github.com/hellicopthecat/catchlot/gakSoo/repo"
 	"github.com/hellicopthecat/catchlot/middleware"
+	"github.com/hellicopthecat/catchlot/official"
 	"github.com/hellicopthecat/catchlot/sqls"
 	"github.com/hellicopthecat/catchlot/tickets"
 	"github.com/hellicopthecat/catchlot/users"
@@ -42,6 +43,7 @@ func main() {
 
 	users.InitModule(db).UserGroupApi(api, jm)
 	tickets.InitTickeModule(db, gaksoo).TicketGroupApi(api, jm)
+	official.InitOfficialLottoModules(db, ctx)
 
 	log.Fatalln(app.Listen(":4000"))
 }
