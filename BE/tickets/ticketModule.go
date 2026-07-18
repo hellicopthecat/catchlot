@@ -17,9 +17,9 @@ type TicketModule struct {
 func InitTickeModule(db *sql.DB, gkCache *gk.GakSooCache) *TicketModule {
 	ticketRepo := repo.InitTicketRepo(db, gkCache)
 	ticketService := service.InitTicketService(ticketRepo)
-	ticketHander := handler.InitTicketHandler(ticketService)
+	ticketHandler := handler.InitTicketHandler(ticketService)
 	return &TicketModule{
-		TicketHandler: *ticketHander,
+		TicketHandler: *ticketHandler,
 	}
 }
 
