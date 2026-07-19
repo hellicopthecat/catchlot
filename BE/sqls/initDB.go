@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/google/uuid"
@@ -78,7 +79,7 @@ func initializedGakSoos(db *sql.DB) {
 		gakSooID, _ := uuid.NewV7()
 		statusID, _ := uuid.NewV7()
 		tx.Exec(string(gakSooSQL), gakSooID.String(), i)
-		tx.Exec(string(gakSooStatusSQL), statusID.String(), gakSooID.String())
+		tx.Exec(string(gakSooStatusSQL), statusID.String(), strconv.Itoa(i))
 		log.Println("✅ Gak_Soo Insert Is Complete")
 	}
 	if err := tx.Commit(); err != nil {

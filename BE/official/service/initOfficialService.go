@@ -1,13 +1,18 @@
 package service
 
-import "github.com/hellicopthecat/catchlot/official/repo"
+import (
+	gakSooStatusRepo "github.com/hellicopthecat/catchlot/gakSooStatus/repo"
+	"github.com/hellicopthecat/catchlot/official/repo"
+)
 
 type OfficialLottoService struct {
-	repo *repo.OfficialLottoRepo
+	repo             *repo.OfficialLottoRepo
+	gakSooStatusRepo *gakSooStatusRepo.GakSooStatusRepo
 }
 
-func InitOfficialLottoService(repo *repo.OfficialLottoRepo) *OfficialLottoService {
+func InitOfficialLottoService(repo *repo.OfficialLottoRepo, repo2 *gakSooStatusRepo.GakSooStatusRepo) *OfficialLottoService {
 	return &OfficialLottoService{
-		repo: repo,
+		repo:             repo,
+		gakSooStatusRepo: repo2,
 	}
 }

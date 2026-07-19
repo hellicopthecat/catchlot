@@ -1,12 +1,7 @@
 UPDATE gak_soo_status
 SET
-  first_count = ?,
-  second_count = ?,
-  third_count = ?,
-  fourth_count = ?,
-  fifth_count = ?,
-  first_probability = ?,
-  second_probability = ?,
+  appear_count = appear_count + 1,
+  bonus_count = bonus_count + CASE WHEN ? THEN 1 ELSE 0 END,
   updated_at = CURRENT_TIMESTAMP
 WHERE 
   soo_id = ?;
