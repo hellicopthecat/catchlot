@@ -19,13 +19,13 @@ func (r TicketRepo) RFindUserTickets(c context.Context, req request.TFindUserTic
 	}
 	defer tx.Rollback()
 
-	q, err := os.ReadFile(constants.SelectSQL + "/s_findUserTickets.sql")
+	q, err := os.ReadFile(constants.SelectSQL + "user_tickets" + "/s_findUserTickets.sql")
 	if err != nil {
 		commons.BadSQLFile(err)
 		return nil, err
 	}
 
-	q2, err := os.ReadFile(constants.SelectSQL + "/s_findUserTicketNumberById.sql")
+	q2, err := os.ReadFile(constants.SelectSQL + "user_tickets" + "/s_findUserTicketNumberById.sql")
 	if err != nil {
 		commons.BadSQLFile(err)
 		return nil, err

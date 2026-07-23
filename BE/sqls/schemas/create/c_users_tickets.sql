@@ -16,5 +16,5 @@ CREATE TABLE IF NOT EXISTS users_tickets  (
   checked INTEGER DEFAULT false, -- BOOLEAN -- 당첨확인체크
 
   FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (round_id) REFERENCES lotto_rounds(id)
+  FOREIGN KEY (round_id) REFERENCES lotto_rounds(round_no)
 );

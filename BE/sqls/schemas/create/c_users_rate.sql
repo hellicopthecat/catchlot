@@ -1,12 +1,12 @@
 /*
 * 유저의 개인 확률
 */
-CREATE TABLE IF NOT EXISTS users_rate_count (
+CREATE TABLE IF NOT EXISTS users_rate (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	
-	user_id TEXT NOT NULL, -- ref user.id
+	user_id TEXT NOT NULL UNIQUE, -- ref user.id
 
 	count_first INTEGER NOT NULL DEFAULT 0,
 	count_second INTEGER NOT NULL DEFAULT 0,
